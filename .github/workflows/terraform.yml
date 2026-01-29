@@ -38,6 +38,10 @@ jobs:
           path: .terraform
           key: terraform-${{ runner.os }}-${{ hashFiles('**/*.tf') }}
 
+      - name: Cleanup old Terraform cache
+        run: |
+          rm -rf .terraform .terraform.lock.hcl
+
       - name: Terraform Init
         run: terraform init -reconfigure
 
